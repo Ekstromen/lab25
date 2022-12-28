@@ -1,0 +1,66 @@
+#define _CRT_SECURE_NO_DEPRECATE
+#include <stdio.h>
+#include <locale.h>
+#include <math.h>
+#include <conio.h>
+#include <stdlib.h>
+#define k 20
+#define R 200
+
+
+int rand10(int mmax); // целое число от 1 до mmax
+int* random(int n, int mmax); // n целых чисел от 1 до mmax
+
+int main() {
+	int stime;
+	long ltime;
+	ltime = time(NULL);
+	stime = (unsigned)ltime / 2;
+	srand(stime);
+
+	int size = 0;
+	setlocale(LC_ALL, "rus");
+	printf("Введите размер массива:\n");
+	scanf("%d", &size);
+	int counter[k] = {0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0};
+	int* arr = (int*)malloc(size * sizeof(int));
+	char gist[R][k];
+
+	arr = random(size, k);
+	for (int i = 0; i < size; i++) {
+		printf("array[%d] = %d \n", i, arr[i]);
+	}
+
+	for (int i = 0; i < size;i++) {
+		counter[arr[i]]++;
+	}
+
+	for (int i = 0; i < k; i++) {
+		printf("\ncount[%d] = %d", i, counter[i]);
+	}
+	printf("\n");
+
+	for (int i = 0, x; i < k; i++) {
+		printf("\n");
+		x = counter[i];
+		printf("%d\t", i);
+		for (int j = 0; j < x; j++) {
+			printf("*");
+		}
+	}
+}
+
+
+int rand10(int mmax) {
+	int x;
+	x = rand() % mmax;
+	return x;
+}
+
+int* random(int n, int mmax) {
+	int* arr = (int*)malloc(n * sizeof(int));
+	for (int i = 0; i < n; i++) {
+		arr[i] = rand10(mmax);
+	}
+	return arr;
+}
