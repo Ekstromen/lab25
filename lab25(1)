@@ -1,0 +1,99 @@
+#define _CRT_SECURE_NO_DEPRECATE
+#include <stdio.h>
+#include <locale.h>
+#include <math.h>
+#include <conio.h>
+#include <stdlib.h>
+
+int main() {
+	int stime;
+	long ltime;
+	ltime = time(NULL);
+	stime = (unsigned)ltime / 2;
+	srand(stime);
+
+	int g;
+	int m = 1 + rand() % 10;
+	int n;
+
+	setlocale(LC_ALL, "rus");
+	printf("Выберите игру: 1) Угадай число; 2) Камень, ножницы, бумага; 0) Закончить выполнение программы\n");
+	scanf("%d", &g);
+
+	switch (g)
+	{
+	case(1):
+		
+		while (1)
+		{
+			printf("Для выхода введите '0' \n");
+			printf("Введите число: \n");
+			scanf("%d", &n);
+			if (n == m) {
+				printf("Вы угадали !\n");
+				break;
+			}
+			if (n > m) {
+				printf("Число меньше\n");
+				
+			}
+			if (n < m) {
+				printf("Число больше\n");
+				
+			}
+			if (n == 0) {
+				break;
+			}
+		}
+		break;
+
+	case(2):
+		while (1)
+		{
+			printf("Для выхода введите '0' \n");
+			printf("Выберите действие: 1)Камень; 2)Ножницы; 3)Бумага.\n");
+			scanf("%d", &n);
+			int r = 1 + rand() % 3;
+			if (n == 1 && r == 2) {
+				printf("Вы победили!\n");
+				break;
+			}
+			if (n == 1 && r == 3) {
+				printf("Вы проиграли!\n");
+				break;
+			}
+			if (n == 2 && r == 3) {
+				printf("Вы победили!\n");
+				break;
+			}
+			if (n == 2 && r == 1) {
+				printf("Вы проиграли!\n");
+				break;
+			}
+			if (n == 3 && r == 2) {
+				printf("Вы проиграли!\n");
+				break;
+			}
+			if (n == 3 && r == 1) {
+				printf("Вы победили!\n");
+				break;
+			}
+			if (n == 1 && r == 1) {
+				printf("Ничья!\n");
+				break;
+			}
+			if (n == 2 && r == 2) {
+				printf("Ничья!\n");
+				break;
+			}
+			if (n == 3 && r == 3) {
+				printf("Ничья!\n");
+				break;
+			}
+		}
+		break;
+
+	default:
+		break;
+	}
+}
